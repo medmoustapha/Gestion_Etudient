@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Gestion des Etudiants</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css"
+ th:href="@{/css/bootstrap.min.css}"/>
+ <link rel="stylesheet" href="../static/css/style.css" type="text/css"
+ th:href="@{/css/style.css}"/>
+</head>
+<body>
+ <div class="container spacer">
+ <header >
+  <div class="navbar navbar-default">
+   <div class="container-fuild">
+    <ul class="nav navbar-nav">
+     <li><a th:href="@{index}">Etudiants</a></li>
+     <li><a th:href="@{form}">New Etudiant</a></li>
+      
+    
+    </ul>
+   
+   </div>
+  
+  </div>
+ </header>
+ <section layout:fragment="content">
+ 
+ </section>
+ <footer>
+ 
+ </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+            layout:decorator="template">
+<head>
+<meta charset="utf-8"/>
+<title>Gestion des etudiants</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css"
+ th:href="@{/css/bootstrap.min.css}"/>
+ <link rel="stylesheet" href="../static/css/style.css" type="text/css"
+ th:href="@{/css/style.css}"/>
+</head>
+<body>
+  <div class="container">
+    <div class="container ">
+      <div class="col-md-1">
+      <a th:href="@{form}"><button class="btn btn-primary">Saisi</button></a>
+      </div>
+    </div>
+      <h3>Liste des etudiants</h3>
+    <div class="container">
+      <form th:action="@{index}" method="GET">
+        <div class="form-group">
+            <label class="control-label"></label>
+            <input type="text" name="motCle" th:value="${motCle}"/>
+            <button type="submit" class="btn btn-default">Chercher</button>
+        </div>
+      </form>
+    </div>
+    
+    
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th><th>NOM</th><th>EMAIL</th><th>DATE</th><th>PHOTO</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="e:${pageEtudiants.content}">
+          <td th:text="${e.id}"></td>
+          <td th:text="${e.nom}"></td>
+          <td th:text="${e.email}"></td>
+          <td th:text="${e.dateNaissance}"></td>
+          <td ><img class="img-circle" th:src="@{getPhoto(id=${e.id})}" alt="" width="50" height="50"/></td>
+          <td >
+            <a th:href="@{edit(id=${e.id})}"><button class="btn btn-default btn-xs btn-detail">Edit</button></a> 
+            <a onClick="return confirm('Etes vous sure?')" th:href="@{delete(id=${e.id})}"><button class="btn btn-danger btn-xs btn-delete">Delete</button></a>
+          </td>
+          </tr>
+        </tbody>
+      
+      </table>
+      </div>
+      <div class="container">
+          <ul class="nav nav-pills"> 
+                <li th:each="p:${pages}" th:class="${p==pageCourante}?active:''">
+                  <a th:text="${p}" th:href="@{index(page=${p},motCle=${motCle})}"></a>
+                </li>
+
+          </ul>
+
+      </div>
+
+</body>
+</html>
